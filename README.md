@@ -3,7 +3,15 @@ Public information on our Amnesty onion website brought to you by [Amnesty Tech]
 
 ## Shareable Guide 
 
-Somthint like https://github.com/alecmuffett/eotk/blob/master/docs.d/HOW-TO-INSTALL.md but specific to our use case
+Something like https://github.com/alecmuffett/eotk/blob/master/docs.d/HOW-TO-INSTALL.md but specific to our use case
+
+## Supported domains 
+
+| Primary Domain  | Private Domain  |
+|---|---|
+| www.amnesty.org  |   |
+
+Manage an amnesty .onion domain and would like it listed here? Let us know. 
 
 ## Acknoldgements 
 

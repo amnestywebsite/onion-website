@@ -7,7 +7,7 @@ Something like https://github.com/alecmuffett/eotk/blob/master/docs.d/HOW-TO-INS
 
 ## Supported domains 
 
-| Primary Domain  | Private Domain  |
+| Primary Domain  | Onion Domain  |
 |---|---|
 | www.amnesty.org  |   |
 

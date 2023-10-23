@@ -1,0 +1,6 @@
+---
+
+tor_config: /etc/tor/torrc
+tor_hs_path: /var/lib/tor/hidden_services
+tor_user: debian-tor
+tor_group: debian-tor

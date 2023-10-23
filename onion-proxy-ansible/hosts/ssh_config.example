@@ -1,0 +1,9 @@
+Host amnesty-tor-dev
+  User user
+  Hostname 192.168.63.128  # Local VM IP for testing
+
+Host amnesty-tor-prod
+  User azureuser
+  Hostname PRODUCTION-SSH-IP
+  ProxyJump jump-host
+  IdentityFile ~/.ssh/id_rsa_amnesty_tor

@@ -1,0 +1,75 @@
+---
+
+- name: Install build dependencies
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - libpcre3-dev
+    - libssl-dev
+    - perl
+    - make
+    - build-essential
+    - curl
+
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Install libnginx-mod-http-subs-filter
+  apt:
+    name: libnginx-mod-http-subs-filter
+    state: present
+  notify: restart nginx
+
+- name: Install libnginx-mod-http-headers-more-filter
+  apt:
+    name: libnginx-mod-http-headers-more-filter
+    state: present
+  notify: restart nginx
+
+- name: Configure buffer sizes for nginx
+  blockinfile:
+    path: "/etc/nginx/conf.d/proxy-buffers.conf"
+    marker: "### {mark} ANSIBLE MANAGED BLOCK ###"
+    create: true
+    block: |
+      # Expand buffer sizes needed for big hostnames and headers.
+      proxy_buffer_size   128k;
+      proxy_buffers   4 256k;
+      proxy_busy_buffers_size   256k;
+      server_names_hash_bucket_size 512;
+  notify:
+    - reload nginx
+
+- name: Create directory to store TLS keys.
+  file:
+    path: "/etc/nginx/certs"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy TLS certificates for host
+  ansible.builtin.copy:
+    src: "secrets/{{ onion_hostname }}/certs/{{ item }}"
+    dest: "/etc/nginx/certs/{{ item }}"
+    owner: root
+    group: root
+    mode: '0600'
+    directory_mode: '0700'
+  loop:
+    - "{{ onion_hostname }}.cert"
+    - "{{ onion_hostname }}.pem"
+
+- name: Copy nginx site config
+  template:
+    src: nginx-site.conf.j2
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+  - reload nginx

@@ -1,0 +1,10 @@
+---
+- name: validate tor configuration
+  command: tor --verify-config
+  changed_when: False
+
+- name: reload tor
+  service: name=tor state=reloaded
+
+- name: restart tor
+  service: name=tor state=restarted

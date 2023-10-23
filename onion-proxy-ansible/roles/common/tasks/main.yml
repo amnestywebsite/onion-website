@@ -1,0 +1,16 @@
+
+- name: Upgrade packages
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    upgrade: "yes"
+
+- name: Install base packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - apt-transport-https
+    - ca-certificates
+    - molly-guard
+    - tmux

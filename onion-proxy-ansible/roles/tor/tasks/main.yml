@@ -1,0 +1,49 @@
+- name: Add Tor repo using key from URL
+  deb822_repository:
+    name: tor
+    types: deb
+    uris: https://deb.torproject.org/torproject.org
+    suites: '{{ ansible_distribution_release }}'
+    components: main
+    architectures: "{{ architecture }}"
+    signed_by: https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc
+
+- name: Install Tor
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+    - tor
+    - deb.torproject.org-keyring
+
+- name: Create directory to store onion service keys.
+  file:
+    path: "{{ tor_hs_path }}"
+    state: directory
+    owner: debian-tor
+    group: debian-tor
+    mode: '0755'
+
+- name: Copy keys and secrets for onion service
+  ansible.builtin.copy:
+    src: "secrets/{{ onion_hostname }}/tor/"
+    dest: "{{ tor_hs_path }}/{{ onion_hostname }}"
+    owner: debian-tor
+    group: debian-tor
+    mode: '0600'
+    directory_mode: '0700'
+
+- name: Insert relevant lines for Tor onion service maps
+  blockinfile:
+    path: "{{ tor_config }}"
+    marker: "### {mark} ANSIBLE MANAGED BLOCK for {{ onion_hostname }} ###"
+    block: |
+      # Mapping {{ onion_hostname }} -> {{ mapped_host }}
+      HiddenServiceDir {{ tor_hs_path }}/{{ onion_hostname }}
+      HiddenServicePort 80 127.0.0.1:80
+      HiddenServicePort 443 127.0.0.1:443
+    validate: sudo -u debian-tor sh -c "/usr/bin/tor --verify-config -f %s"
+  notify:
+    - reload tor

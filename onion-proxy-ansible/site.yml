@@ -1,0 +1,9 @@
+---
+# This playbook configures the Tor reverse proxy.
+
+- hosts: proxy
+  roles:
+    - common
+    - {role: 'common', tags: 'common'}
+    - {role: 'tor', tags: 'tor'}
+    - {role: 'proxy', tags: 'proxy'}

@@ -1,0 +1,12 @@
+---
+proxy:
+    hosts:
+        amnesty-tor-dev:
+            onion_hostname: amnesty232svhp4dlxeows2jdwgeknojamlnpsj7iywmr7fx3ugyzmad.onion
+            mapped_host: amnesty.org
+            enabled_subdomains:
+            - www
+    vars:
+        ansible_user: user
+        ansible_become: true
+        architecture: arm64

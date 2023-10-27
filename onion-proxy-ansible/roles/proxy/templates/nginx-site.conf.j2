@@ -49,7 +49,7 @@ server {
   location ~* "^\/([\w]{2})\/donate[\/]*$" {
     rewrite "^\/([\w]{2})\/donate[\/]*$" https://www.amnesty.org/$1/donate/ permanent;
   }
-  location ~* "(\/(?:en|fr|ar|es|))?\/wp-admin\/" { return 403; } # deny CMS
+  location ~* "(\/(?:en|fr|ar|es|))?\/wp-admin(?:\/)?" { return 403; } # deny CMS
   location ~* "(\/(?:en|fr|ar|es|))?\/wp-login.php" { return 403; } # deny CMS
 
   # Rewrite the content of HTTP responses

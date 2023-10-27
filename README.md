@@ -1,15 +1,15 @@
 # The Amnesty Onion Website
 Public information on our Amnesty onion website brought to you by [Amnesty Tech](https://github.com/AmnestyTech)
 
-## Guide 
+## Guide
 
-Info on how this works cna be found here   
-https://github.com/amnestywebsite/onion-website/blob/main/onion-proxy-ansible/README.md   
+Info on how this works cna be found here
+https://github.com/amnestywebsite/onion-website/blob/main/onion-proxy-ansible/README.md
 
 
-## Supported domains 
+## Supported domains
 
-https://github.com/amnestywebsite/onion-website/blob/main/onion-proxy-ansible/hosts/hosts-prod   
+https://github.com/amnestywebsite/onion-website/blob/main/onion-proxy-ansible/hosts/hosts-prod
 
 
 | Primary Domain  | Onion Domain  |
@@ -20,11 +20,11 @@ https://github.com/amnestywebsite/onion-website/blob/main/onion-proxy-ansible/ho
 | eurasia.amnesty.org  |  eurasia.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion |
 | securitylab.amnesty.org  | securitylab.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
 
-Manage an amnesty .onion domain and would like it listed here? Let us know. 
+Manage an amnesty .onion domain and would like it listed here? Let us know.
 
-## Acknoldgements 
+## Acknowledgements
 
-Insprired by the work of Alec Muffett's EOTK https://github.com/alecmuffett/eotk 
+Insprired by the work of Alec Muffett's EOTK https://github.com/alecmuffett/eotk
 
 
 ### Want to know more about the work in other Amnesty GitHub accounts?

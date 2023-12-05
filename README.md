@@ -14,11 +14,11 @@ https://github.com/amnestywebsite/onion-website/blob/main/onion-proxy-ansible/ho
 
 | Primary Domain  | Onion Domain  |
 |---|---|
-| www.amnesty.org  | www.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
-| fa.amnesty.org  | fa.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
-| zh.amnesty.org  | zh.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
-| eurasia.amnesty.org  |  eurasia.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion |
-| securitylab.amnesty.org  | securitylab.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
+| https://www.amnesty.org  | www.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
+| https://fa.amnesty.org  | fa.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
+| https://zh.amnesty.org  | zh.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
+| https://eurasia.amnesty.org  |  eurasia.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion |
+| https://securitylab.amnesty.org  | securitylab.amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion  |
 
 Manage an amnesty .onion domain and would like it listed here? Let us know.
 

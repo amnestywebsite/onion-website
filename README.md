@@ -3,7 +3,7 @@ Public information on our Amnesty onion website brought to you by [Amnesty Tech]
 
 ## Guide
 
-Info on how this works cna be found here
+Info on how this works can be found here
 https://github.com/amnestywebsite/onion-website/blob/main/onion-proxy-ansible/README.md
 
 

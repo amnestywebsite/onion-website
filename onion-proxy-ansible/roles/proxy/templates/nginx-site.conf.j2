@@ -69,7 +69,11 @@ server {
   location / {
     proxy_pass https://{{ subdomain }}.{{ mapped_host }};
     proxy_ssl_server_name on;
-    # proxy_ssl_session_reuse off;  # TODO: check if needed
+
+    # Make sure that nginx verifies the upstream TLS certificate
+    proxy_ssl_verify on;
+    proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
+
     proxy_cookie_domain {{ mapped_host }} {{ onion_hostname }};
     proxy_cookie_domain {{ subdomain }}.{{ mapped_host }} {{ subdomain }}.{{ onion_hostname }};
     proxy_redirect https://{{ subdomain }}.{{ mapped_host }}/ https://{{ subdomain }}.{{ onion_hostname }}/;

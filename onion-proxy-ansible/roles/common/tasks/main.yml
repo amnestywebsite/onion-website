@@ -1,4 +1,17 @@
 
+# Last matching sudoers rule wins and sudoers.d is read in lexical order, so the
+# file must sort after Azure's waagent file ("ALL=(ALL) ALL", password required).
+# Names containing "." are ignored by sudo.
+- name: Passwordless sudo for the deploy user
+  copy:
+    dest: "/etc/sudoers.d/zz-{{ ansible_user }}"
+    content: "{{ ansible_user }} ALL=(ALL) NOPASSWD:ALL\n"
+    owner: root
+    group: root
+    mode: '0440'
+    validate: visudo -cf %s
+  tags: sudo
+
 - name: Upgrade packages
   apt:
     update_cache: yes

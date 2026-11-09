@@ -80,6 +80,8 @@ server {
     proxy_cookie_domain {{ mapped_host }} {{ onion_hostname }};
     proxy_cookie_domain {{ subdomain }}.{{ mapped_host }} {{ subdomain }}.{{ onion_hostname }};
     proxy_redirect https://{{ subdomain }}.{{ mapped_host }}/ https://{{ subdomain }}.{{ onion_hostname }}/;
+    # Upstreams also redirect to the bare domain (zh > amnesty.org/zh-hans/). Keep those on the onion.
+    proxy_redirect https://{{ mapped_host }}/ https://{{ onion_hostname }}/;
 
     # Override Accept-Encoding to not compress data, since the subs module can not replace
     proxy_set_header Accept-Encoding "";

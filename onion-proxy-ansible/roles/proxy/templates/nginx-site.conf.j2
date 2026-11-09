@@ -73,6 +73,9 @@ server {
     # Make sure that nginx verifies the upstream TLS certificate
     proxy_ssl_verify on;
     proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
+    # nginx defaults to depth 1. Let's Encrypt's chain (leaf > YE1 > Root YE > ISRG Root X2)
+    # needs 2; 3 leaves room for another cross-sign.
+    proxy_ssl_verify_depth 3;
 
     proxy_cookie_domain {{ mapped_host }} {{ onion_hostname }};
     proxy_cookie_domain {{ subdomain }}.{{ mapped_host }} {{ subdomain }}.{{ onion_hostname }};

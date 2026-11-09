@@ -63,6 +63,8 @@
   loop:
     - "{{ onion_hostname }}.cert"
     - "{{ onion_hostname }}.pem"
+  notify:
+  - reload nginx
 
 - name: Copy nginx site config
   template:

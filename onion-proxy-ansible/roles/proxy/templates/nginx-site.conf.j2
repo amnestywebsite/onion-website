@@ -59,7 +59,7 @@ server {
   # Mark canonical tag
   sub_filter "rel=\"canonical\" href=\"https://{{ subdomain }}.{{ mapped_host }}" "-----CANONICALHTTPSAMNESTYADOTORG-----";
   # Rewrite original domain to onion
-  {% for rewrite_sub in enabled_subdomains %}
+  {% for rewrite_sub in enabled_subdomains + (redirect_subdomains | default({}) | list) %}
   sub_filter 'https://{{ rewrite_sub }}.{{ mapped_host }}' 'https://{{ rewrite_sub }}.{{ onion_hostname }}';
   {% endfor %}
 
@@ -87,6 +87,20 @@ server {
 
     more_clear_headers "Vary";
   }
+}
+{% endfor %}
+
+{% for subdomain, target in (redirect_subdomains | default({})).items() %}
+server {
+  listen 127.0.0.1:443 ssl http2;
+  server_name {{ subdomain }}.{{ onion_hostname }};
+  server_tokens off;
+
+  ssl_certificate /etc/nginx/certs/{{ onion_hostname }}.cert;
+  ssl_certificate_key /etc/nginx/certs/{{ onion_hostname }}.pem;
+  ssl_session_timeout 5m;
+
+  return 301 {{ target }};
 }
 {% endfor %}
 

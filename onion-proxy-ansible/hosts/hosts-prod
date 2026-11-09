@@ -8,8 +8,10 @@ proxy:
             - www
             - fa
             - zh
-            - eurasia
             - securitylab
+            # Upstream now only redirects, so redirect on the onion too.
+            redirect_subdomains:
+                eurasia: https://www.{{ onion_hostname }}/ru/
     vars:
         ansible_user: azureuser
         ansible_become: true
